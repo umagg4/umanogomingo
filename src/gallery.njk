@@ -36,7 +36,7 @@ title: ギャラリー
 
   <div class="grid">
     {% for image in collections.galleryImages %}
-      <img src="{{ image.url | url }}" alt="{ image.fileName }">
+      <img src="{{ image.url | url }}" alt="{{ image.fileName }}">
     {% endfor %}
   </div>
 
