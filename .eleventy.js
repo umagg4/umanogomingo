@@ -15,7 +15,7 @@ eleventyConfig.addCollection("galleryImages", function() {
    .filter(f => /\.(jpg|jpeg|png|gif)$/i.test(f))
    .map(f => ({
      fileName: f,
-     url: (isProduction ? "/umanogomingo/images/portfolio/" : "/images/portfolio/") + f
+     url: (isProduction ? "/images/portfolio/" : "/images/portfolio/") + f
    }));
 });
 
@@ -26,7 +26,7 @@ eleventyConfig.addCollection("modelingImages", function() {
    .filter(f => /\.(jpg|jpeg|png|gif)$/i.test(f))
    .map(f => ({
      fileName: f,
-     url: (isProduction ? "/umanogomingo/images/3dcg/" : "/images/3dcg/") + f
+     url: (isProduction ? "/images/3dcg/" : "/images/3dcg/") + f
    }));
 });
 

@@ -4,8 +4,8 @@
   "description": "Eleventyを使用した静的サイト",
   "main": ".eleventy.js",
   "scripts": {
-    "build": "eleventy",
-    "start": "eleventy --serve"
+    "build": "NODE_ENV=production npx eleventy",
+    "start": "npx eleventy --serve"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0"
