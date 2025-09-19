@@ -36,7 +36,7 @@ background-color: #fff0d9ff;">
 
   <div class="grid">
     {% for image in collections.modelingImages %}
-      <img src="{{ image.url }}" alt="{{ image.fileName }}">
+      <img src="{{ image.url| url  }}" alt="{{ image.fileName }}">
     {% endfor %}
   </div>
 
@@ -63,6 +63,7 @@ background-color: #fff0d9ff;">
     });
   </script>
 
-  <p><a href={{ 'index/' | url }}>← トップへ戻る</a></p>
+  <p><a href="{{ '/' | url }}">← トップへ戻る</a></p>
+
 </body>
 </html>
