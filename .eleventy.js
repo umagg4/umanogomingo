@@ -17,7 +17,7 @@ eleventyConfig.addCollection("galleryImages", function() {
     .filter(f => /\.(jpg|jpeg|png|gif)$/i.test(f))
     .map(f => ({ 
       fileName: f, 
-      url: "/images/portfolio/" + f  // パスプレフィックスなし
+      url: "images/portfolio/" + f  // パスプレフィックスなし
     }));
 });
 
@@ -26,7 +26,7 @@ eleventyConfig.addCollection("galleryImages", function() {
     const dir = "src/images/3dcg";
     return fs.readdirSync(dir)
       .filter(f => /\.(jpg|jpeg|png|gif)$/i.test(f))
-      .map(f => ({ fileName: f, url: "/images/3dcg/" + f }));
+      .map(f => ({ fileName: f, url: "/images/3dcg/"+ f }));
   });
 
   return {
