@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ギャラリー</title>
+  
+  <style>
+    body { font-family: sans-serif; }
+    .grid {
+      column-count:4;
+      column-gap: 16px;
+    }
+    .grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+      break-inside: avoid;
+    }
+    /* ライトボックスのスタイルはそのまま */
+    #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+    #lightbox img { max-width: 80vw; max-height: 80vh; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,0.5); background: white; }
+  </style>
+</head>
+<body style="text-align: center;
+background-color: #fff0d9ff;">
+  <h1>しーじー</h1>
+  <p>やぁ</p>
+
+  <div class="grid">
+    
+      <img src="/images/3dcg/832b475f4a1d16b753b488e636f833d9.jpg" alt="832b475f4a1d16b753b488e636f833d9.jpg">
+    
+      <img src="/images/3dcg/8517bb260ab21de98a74d1ea80d7b4af.jpg" alt="8517bb260ab21de98a74d1ea80d7b4af.jpg">
+    
+      <img src="/images/3dcg/compsit.jpg" alt="compsit.jpg">
+    
+      <img src="/images/3dcg/dan5.png" alt="dan5.png">
+    
+      <img src="/images/3dcg/kkkk.png" alt="kkkk.png">
+    
+      <img src="/images/3dcg/ppp4.png" alt="ppp4.png">
+    
+      <img src="/images/3dcg/Sample_02.jpg" alt="Sample_02.jpg">
+    
+      <img src="/images/3dcg/Sample_03.png" alt="Sample_03.png">
+    
+      <img src="/images/3dcg/VRChat_2025-01-15_22-38-23.649_1440x2560.png" alt="VRChat_2025-01-15_22-38-23.649_1440x2560.png">
+    
+      <img src="/images/3dcg/wwaiya12.png" alt="wwaiya12.png">
+    
+      <img src="/images/3dcg/wwaiya3.png" alt="wwaiya3.png">
+    
+      <img src="/images/3dcg/yubi_3png.png" alt="yubi_3png.png">
+    
+  </div>
+
+  <!-- ライトボックス用 -->
+  <div id="lightbox">
+    <img src="" alt="拡大画像" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+
+    document.querySelectorAll('.grid img').forEach(img => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', () => {
+        lightboxImage.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImage.src = '';
+    });
+  </script>
+
+  <p><a href="/index.html">← トップへ戻る</a></p>
+</body>
+</html>

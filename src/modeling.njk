@@ -1,0 +1,68 @@
+---
+title: ギャラリー
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ギャラリー</title>
+  
+  <style>
+    body { font-family: sans-serif; }
+    .grid {
+      column-count:4;
+      column-gap: 16px;
+    }
+    .grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+      break-inside: avoid;
+    }
+    /* ライトボックスのスタイルはそのまま */
+    #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+    #lightbox img { max-width: 80vw; max-height: 80vh; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,0.5); background: white; }
+  </style>
+</head>
+<body style="text-align: center;
+background-color: #fff0d9ff;">
+  <h1>しーじー</h1>
+  <p>やぁ</p>
+
+  <div class="grid">
+    {% for image in collections.modelingImages %}
+      <img src="{{ image.url }}" alt="{{ image.fileName }}">
+    {% endfor %}
+  </div>
+
+  <!-- ライトボックス用 -->
+  <div id="lightbox">
+    <img src="" alt="拡大画像" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+
+    document.querySelectorAll('.grid img').forEach(img => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', () => {
+        lightboxImage.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImage.src = '';
+    });
+  </script>
+
+  <p><a href="/index.html">← トップへ戻る</a></p>
+</body>
+</html>
