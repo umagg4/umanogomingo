@@ -1,8 +1,6 @@
 module.exports = function(eleventyConfig) {
 
-  // 本番環境（production）の時だけ、パスの先頭にリポジトリ名を付与する
-
-  const isProduction = process.env.NODE_ENV === 'production';
+ 
 
  
 
