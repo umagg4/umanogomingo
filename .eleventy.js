@@ -35,7 +35,7 @@ eleventyConfig.addCollection("galleryImages", function() {
   return {
 
     // passthroughFileCopy: true, // 画像などをdistにコピーする設定など、他の設定はそのまま
-    pathPrefix: isProduction ? '/umanogomingo/' : '/',
+    pathPrefix : isProduction ?"/umanogomingo/" : "/",
 
     dir: {
       input: "src",
