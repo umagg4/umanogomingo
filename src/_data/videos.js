@@ -1,41 +1,41 @@
 module.exports = [
   {
-    title: "人生イチの３タテ",
-    url: "https://www.youtube.com/embed/iqet0JFmnt8?si=BPbkxi5Cglj4Qv4h",
-    id: "iqet0JFmnt8"  // 動画IDを追加
+    title: "深夜テンションペクス(2022/06/26)",
+    url: "https://www.youtube.com/embed/6iOewpMNSuM?si=VdR0rk3xP-jjckzU" ,
+    id: "6iOewpMNSuM"  // 動画IDを追加
   },
   {
-    title: "謎神プレイガンゲーム",
-    url: "https://www.youtube.com/embed/7o4IzR7AWmU?si=BwPTlIq9KVew54Q4" ,
-    id: "7o4IzR7AWmU"
+    title: "わやく飯集会(2025/06/01)",
+    url: "https://www.youtube.com/embed/2chMfMqIOoc?si=QTA7OKQLIMMe80Fo"  ,
+    id: "2chMfMqIOoc"
   },
   {
-    title: "深夜ペクス２(2022/07/06)",
-    url: "https://www.youtube.com/embed/-90SkQTo0ao?si=g_n_bJ_UhlUzU1E0" ,
-    id: "-90SkQTo0ao"
+    title: "loud(2024/03/11)",
+    url:"https://www.youtube.com/embed/BoPhahbu0Xw?si=eBZw-M3iP9oPyV_d" ,
+    id: "BoPhahbu0Xw"
   },
  {
-    title: " お気持ちツイートバトル一回戦",
+    title: "お気持ちツイートバトル1回戦(2025/08/15)",
     url: " https://www.youtube.com/embed/HEJ_bNuV3_A?si=DoemmlDazlcbTKvR" ,
     id: "HEJ_bNuV3_A"
   },
    {
-    title: "これがvrchat ",
+    title: "これがvrchat(2023/03/01)",
     url: "https://www.youtube.com/embed/sym_2ODgPG4?si=TvCOVb7tQpXP9yqv " ,
     id: "sym_2ODgPG4"
   },
   {
-    title: " Ae練習としての一本目に作ったやつ",
+    title: "Ae練習で作ったヨヅリナ(2019/08/17)",
     url: " https://www.youtube.com/embed/qdbOEFyS2xM?si=IKuhpe8p7aco3t6o" ,
     id: "qdbOEFyS2xM"
   },
  {
-    title: "itoをやってるだけの動画",
+    title: "itoをやってるだけの動画(2020/03/08)",
     url: " https://www.youtube.com/embed/cMoaAmcAHOA?si=61oPcFEjKomrxJux" ,
     id: "cMoaAmcAHOA"
   },
  {
-    title: "フレンド用に作ったblender講座",
+    title: "blenderウェイトペイントやり方を雑に説明してる動画(2022/06/30)",
     url: "https://www.youtube.com/embed/xusa4eVmJwU?si=s78NJC6G_eJXU4ef" ,
     id: "xusa4eVmJwU"
   },
