@@ -1,8 +1,7 @@
 module.exports = function(eleventyConfig) {
 
- 
-
- 
+ // 本番環境（production）の時だけ、パスの先頭にリポジトリ名を付与する
+  const isProduction = process.env.NODE_ENV === 'production';
 
   // 画像をコピー
   
@@ -33,7 +32,8 @@ eleventyConfig.addCollection("galleryImages", function() {
   return {
 
     // passthroughFileCopy: true, // 画像などをdistにコピーする設定など、他の設定はそのまま
-    
+    pathPrefix : isProduction ?"/umanogomingo/" : "/",
+
 
     dir: {
       input: "src",
