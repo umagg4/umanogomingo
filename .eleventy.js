@@ -14,12 +14,17 @@ module.exports = function(eleventyConfig) {
     for (let file of files) {
       let srcPath = `${dir}/${file}`;
 
-      // サムネイル画像を生成（横幅 300px）
+      // サムネイル画像を生成（250px） + 元画像
       let metadata = await Image(srcPath, {
-        widths: [250, null], // 300px サムネイル + 元サイズ
+        widths: [250, null], // サムネイル + 元サイズ
         formats: ["jpeg"],
-        outputDir: "./docs/images/", // 出力先
-        urlPath: "/images/",        // 公開パス
+        outputDir: "./docs/images/" + subPath, // 出力先
+        urlPath: "/images/" + subPath + "/",   // 公開パス
+        filenameFormat: (id, src, width, format, options) => {
+          // 元ファイル名に _ がつかないように
+          const name = src.split("/").pop().replace(/\.[^/.]+$/, "");
+          return `${name}-${width}.${format}`;
+        }
       });
 
       results.push({
