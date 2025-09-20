@@ -2,8 +2,17 @@ module.exports = [
   {
     title: "深夜テンションペクス(2022/06/26)",
     url: "https://www.youtube.com/embed/6iOewpMNSuM?si=VdR0rk3xP-jjckzU" ,
-    id: "6iOewpMNSuM"  // 動画IDを追加
+    id: "6iOewpMNSuM",  // 動画IDを追加
+    
   },
+
+   {
+    title: "久々のえぺG昇格まん(2025/09/10) ",
+    url: "https://www.youtube.com/embed/5hHjuBs_CvY?si=b647RwpO-rgbzh5T"  ,
+    id: "5hHjuBs_CvY"
+  
+  },
+
   {
     title: "わやく飯集会(2025/06/01)",
     url: "https://www.youtube.com/embed/2chMfMqIOoc?si=QTA7OKQLIMMe80Fo"  ,
@@ -45,3 +54,5 @@ module.exports = [
   ...video,
   thumbnail: `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`
 }));
+// 追加でジャンルリストを生成
+module.exports.genres = [...new Set(module.exports.map(v => v.genre))];

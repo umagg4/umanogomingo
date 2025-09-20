@@ -9,20 +9,29 @@
     body { font-family: "07にくまるフォント"; text-align: center; background-color: #111; color: #fff; }
     h1 { margin-top: 1em; font-size: 3em; text-shadow: 2px 2px 6px rgba(0,0,0,0.7); }
 
+    /* --- タブ --- */
+    .tabs { display: flex; justify-content: center; gap: 1em; margin: 2em 0; flex-wrap: wrap; }
+    .tabs button {
+      padding: 8px 16px;
+      font-size: 1em;
+      background: #222;
+      color: #ff9900;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tabs button.active { background: #ff9900; color: #111; }
+
+    /* --- グリッド --- */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
       max-width: 1200px;
-      margin: 2em auto;
+      margin: 0 auto 2em auto;
     }
-
-    .video-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
+    .video-item { display: flex; flex-direction: column; align-items: center; }
     .video-item img {
       width: 100%;
       border-radius: 10px;
@@ -30,9 +39,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       transition: transform 0.3s ease;
     }
-
     .video-item img:hover { transform: scale(1.05); }
-
     .video-title {
       margin-top: 8px;
       font-size: 1.1em;
@@ -40,18 +47,16 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
 
+    /* --- ライトボックス --- */
     #lightbox {
       display: none;
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       background: rgba(0,0,0,0.8);
       z-index: 1000;
-      justify-content: center;
-      align-items: center;
+      justify-content: center; align-items: center;
       cursor: pointer;
     }
-
     #lightbox iframe {
       width: 80vw;
       height: 45vw;
@@ -67,69 +72,139 @@
   </style>
 </head>
 <body>
-  <h1>どうが</h1>
+  <h1>動画ギャラリー</h1>
 
-  <div class="grid">
+  
+
+
+  
     
-      <div class="video-item">
-        <img src="https://img.youtube.com/vi/6iOewpMNSuM/hqdefault.jpg" alt="深夜テンションペクス(2022/06/26)" data-url="https://www.youtube.com/embed/6iOewpMNSuM?si=VdR0rk3xP-jjckzU">
-        <div class="video-title">深夜テンションペクス(2022/06/26)</div>
-      </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <!-- タブ -->
+ <div class="tabs">
+  
+    <button data-genre="" class="active"></button>
+  
+</div>
+
+
+  <div class="grid" data-genre="" style="">
     
-      <div class="video-item">
-        <img src="https://img.youtube.com/vi/2chMfMqIOoc/hqdefault.jpg" alt="わやく飯集会(2025/06/01)" data-url="https://www.youtube.com/embed/2chMfMqIOoc?si=QTA7OKQLIMMe80Fo">
-        <div class="video-title">わやく飯集会(2025/06/01)</div>
-      </div>
+      
+        <div class="video-item">
+          <img src="https://img.youtube.com/vi/6iOewpMNSuM/hqdefault.jpg" alt="深夜テンションペクス(2022/06/26)" data-url="https://www.youtube.com/embed/6iOewpMNSuM?si=VdR0rk3xP-jjckzU">
+          <div class="video-title">深夜テンションペクス(2022/06/26)</div>
+        </div>
+      
     
-      <div class="video-item">
-        <img src="https://img.youtube.com/vi/BoPhahbu0Xw/hqdefault.jpg" alt="loud(2024/03/11)" data-url="https://www.youtube.com/embed/BoPhahbu0Xw?si=eBZw-M3iP9oPyV_d">
-        <div class="video-title">loud(2024/03/11)</div>
-      </div>
+      
+        <div class="video-item">
+          <img src="https://img.youtube.com/vi/5hHjuBs_CvY/hqdefault.jpg" alt="久々のえぺG昇格まん(2025/09/10) " data-url="https://www.youtube.com/embed/5hHjuBs_CvY?si=b647RwpO-rgbzh5T">
+          <div class="video-title">久々のえぺG昇格まん(2025/09/10) </div>
+        </div>
+      
     
-      <div class="video-item">
-        <img src="https://img.youtube.com/vi/HEJ_bNuV3_A/hqdefault.jpg" alt="お気持ちツイートバトル1回戦(2025/08/15)" data-url=" https://www.youtube.com/embed/HEJ_bNuV3_A?si=DoemmlDazlcbTKvR">
-        <div class="video-title">お気持ちツイートバトル1回戦(2025/08/15)</div>
-      </div>
+      
+        <div class="video-item">
+          <img src="https://img.youtube.com/vi/2chMfMqIOoc/hqdefault.jpg" alt="わやく飯集会(2025/06/01)" data-url="https://www.youtube.com/embed/2chMfMqIOoc?si=QTA7OKQLIMMe80Fo">
+          <div class="video-title">わやく飯集会(2025/06/01)</div>
+        </div>
+      
     
-      <div class="video-item">
-        <img src="https://img.youtube.com/vi/sym_2ODgPG4/hqdefault.jpg" alt="これがvrchat(2023/03/01)" data-url="https://www.youtube.com/embed/sym_2ODgPG4?si=TvCOVb7tQpXP9yqv ">
-        <div class="video-title">これがvrchat(2023/03/01)</div>
-      </div>
+      
+        <div class="video-item">
+          <img src="https://img.youtube.com/vi/BoPhahbu0Xw/hqdefault.jpg" alt="loud(2024/03/11)" data-url="https://www.youtube.com/embed/BoPhahbu0Xw?si=eBZw-M3iP9oPyV_d">
+          <div class="video-title">loud(2024/03/11)</div>
+        </div>
+      
     
-      <div class="video-item">
-        <img src="https://img.youtube.com/vi/qdbOEFyS2xM/hqdefault.jpg" alt="Ae練習で作ったヨヅリナ(2019/08/17)" data-url=" https://www.youtube.com/embed/qdbOEFyS2xM?si=IKuhpe8p7aco3t6o">
-        <div class="video-title">Ae練習で作ったヨヅリナ(2019/08/17)</div>
-      </div>
+      
+        <div class="video-item">
+          <img src="https://img.youtube.com/vi/HEJ_bNuV3_A/hqdefault.jpg" alt="お気持ちツイートバトル1回戦(2025/08/15)" data-url=" https://www.youtube.com/embed/HEJ_bNuV3_A?si=DoemmlDazlcbTKvR">
+          <div class="video-title">お気持ちツイートバトル1回戦(2025/08/15)</div>
+        </div>
+      
     
-      <div class="video-item">
-        <img src="https://img.youtube.com/vi/cMoaAmcAHOA/hqdefault.jpg" alt="itoをやってるだけの動画(2020/03/08)" data-url=" https://www.youtube.com/embed/cMoaAmcAHOA?si=61oPcFEjKomrxJux">
-        <div class="video-title">itoをやってるだけの動画(2020/03/08)</div>
-      </div>
+      
+        <div class="video-item">
+          <img src="https://img.youtube.com/vi/sym_2ODgPG4/hqdefault.jpg" alt="これがvrchat(2023/03/01)" data-url="https://www.youtube.com/embed/sym_2ODgPG4?si=TvCOVb7tQpXP9yqv ">
+          <div class="video-title">これがvrchat(2023/03/01)</div>
+        </div>
+      
     
-      <div class="video-item">
-        <img src="https://img.youtube.com/vi/xusa4eVmJwU/hqdefault.jpg" alt="blenderウェイトペイントやり方を雑に説明してる動画(2022/06/30)" data-url="https://www.youtube.com/embed/xusa4eVmJwU?si=s78NJC6G_eJXU4ef">
-        <div class="video-title">blenderウェイトペイントやり方を雑に説明してる動画(2022/06/30)</div>
-      </div>
+      
+        <div class="video-item">
+          <img src="https://img.youtube.com/vi/qdbOEFyS2xM/hqdefault.jpg" alt="Ae練習で作ったヨヅリナ(2019/08/17)" data-url=" https://www.youtube.com/embed/qdbOEFyS2xM?si=IKuhpe8p7aco3t6o">
+          <div class="video-title">Ae練習で作ったヨヅリナ(2019/08/17)</div>
+        </div>
+      
+    
+      
+        <div class="video-item">
+          <img src="https://img.youtube.com/vi/cMoaAmcAHOA/hqdefault.jpg" alt="itoをやってるだけの動画(2020/03/08)" data-url=" https://www.youtube.com/embed/cMoaAmcAHOA?si=61oPcFEjKomrxJux">
+          <div class="video-title">itoをやってるだけの動画(2020/03/08)</div>
+        </div>
+      
+    
+      
+        <div class="video-item">
+          <img src="https://img.youtube.com/vi/xusa4eVmJwU/hqdefault.jpg" alt="blenderウェイトペイントやり方を雑に説明してる動画(2022/06/30)" data-url="https://www.youtube.com/embed/xusa4eVmJwU?si=s78NJC6G_eJXU4ef">
+          <div class="video-title">blenderウェイトペイントやり方を雑に説明してる動画(2022/06/30)</div>
+        </div>
+      
     
   </div>
 
+
+
+  <!-- ライトボックス -->
   <div id="lightbox">
     <iframe src="" allowfullscreen></iframe>
   </div>
 
-  <a class="back" href=/umanogomingo/>← トップへ戻る</a>
+  <a class="back" href="/umanogomingo/">← トップへ戻る</a>
 
   <script>
+    // --- タブ切り替え ---
+    const tabs = document.querySelectorAll('.tabs button');
+    const grids = document.querySelectorAll('.grid');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const genre = tab.dataset.genre;
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        grids.forEach(grid => grid.style.display = grid.dataset.genre === genre ? 'grid' : 'none');
+      });
+    });
+
+    // --- ライトボックス ---
     const lightbox = document.getElementById('lightbox');
     const lbIframe = lightbox.querySelector('iframe');
-
     document.querySelectorAll('.video-item img').forEach(img => {
       img.addEventListener('click', () => {
         lbIframe.src = img.dataset.url;
         lightbox.style.display = 'flex';
       });
     });
-
     lightbox.addEventListener('click', () => {
       lightbox.style.display = 'none';
       lbIframe.src = '';

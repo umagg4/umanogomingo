@@ -34,11 +34,14 @@ background-color: #fff0d9ff;">
   <h1>しーじー</h1>
   <p>やぁ</p>
 
-  <div class="grid">
-    {% for image in collections.modelingImages %}
-      <img src="{{ image.url| url  }}" alt="{{ image.fileName }}">
-    {% endfor %}
-  </div>
+<div class="grid">
+  {% for image in collections.modelingImages %}
+    <img 
+      src="{{ image.thumbUrl | url }}" 
+      data-full="{{ image.fullUrl | url }}" 
+      alt="{{ image.fileName }}">
+  {% endfor %}
+</div>
 
   <!-- ライトボックス用 -->
   <div id="lightbox">
@@ -49,13 +52,14 @@ background-color: #fff0d9ff;">
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = lightbox.querySelector('img');
 
-    document.querySelectorAll('.grid img').forEach(img => {
-      img.style.cursor = 'pointer';
-      img.addEventListener('click', () => {
-        lightboxImage.src = img.src;
-        lightbox.style.display = 'flex';
-      });
-    });
+document.querySelectorAll('.grid img').forEach(img => {
+  img.style.cursor = 'pointer';
+  img.addEventListener('click', () => {
+    lightboxImage.src = img.dataset.full; // ← サムネじゃなくフルサイズを読み込む
+    lightbox.style.display = 'flex';
+  });
+});
+
 
     lightbox.addEventListener('click', () => {
       lightbox.style.display = 'none';

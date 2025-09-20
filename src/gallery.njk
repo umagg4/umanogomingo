@@ -34,11 +34,15 @@ title: ギャラリー
   <h1>うんこ</h1>
   <p>適当</p>
 
-  <div class="grid">
-    {% for image in collections.galleryImages %}
-      <img src="{{ image.url | url }}" alt="{{ image.fileName }}">
-    {% endfor %}
-  </div>
+<div class="grid">
+  {% for image in collections.galleryImages %}
+    <img 
+      src="{{ image.thumbUrl | url }}" 
+      data-full="{{ image.fullUrl | url }}" 
+      alt="{{ image.fileName }}">
+  {% endfor %}
+</div>
+
 
   <div id="lightbox">
     <img src="" alt="拡大画像" />
@@ -48,13 +52,14 @@ title: ギャラリー
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = lightbox.querySelector('img');
 
-    document.querySelectorAll('.grid img').forEach(img => {
-      img.style.cursor = 'pointer';
-      img.addEventListener('click', () => {
-        lightboxImage.src = img.src;
-        lightbox.style.display = 'flex';
-      });
-    });
+document.querySelectorAll('.grid img').forEach(img => {
+  img.style.cursor = 'pointer';
+  img.addEventListener('click', () => {
+    lightboxImage.src = img.dataset.full; // ← サムネじゃなくフルサイズを読み込む
+    lightbox.style.display = 'flex';
+  });
+});
+
 
     lightbox.addEventListener('click', () => {
       lightbox.style.display = 'none';

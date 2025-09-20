@@ -66,3 +66,51 @@ nav li a {
 }
 
 
+/* ギャラリーグリッド */
+.grid {
+  column-count: 5;
+  column-gap: 16px;
+}
+
+.grid img {
+  width: 100%;
+  height: auto; /* 縦横比を維持 */
+  display: block;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+  break-inside: avoid;
+}
+
+/* ライトボックス */
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#lightbox img {
+  max-width: 90vw;   /* モバイルでもはみ出さない */
+  max-height: 80vh;
+  border-radius: 6px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  background: white;
+}
+
+/* --- モバイル用調整 --- */
+@media screen and (max-width: 1024px) {
+  .grid { column-count: 3; }
+}
+@media screen and (max-width: 600px) {
+  .grid { column-count: 2; }
+}
+@media screen and (max-width: 400px) {
+  .grid { column-count: 1; }
+}
+
+

@@ -1,40 +1,51 @@
-module.exports = function(eleventyConfig) {
 const fs = require("fs");
+const Image = require("@11ty/eleventy-img");
 
-// 本番環境（production）の時だけ、パスの先頭にリポジトリ名を付与する
-const isProduction = process.env.NODE_ENV === "production";
+module.exports = function(eleventyConfig) {
+  const isProduction = process.env.NODE_ENV === "production";
 
-// 画像をコピー
-eleventyConfig.addPassthroughCopy("src/images");
-eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/css");
 
-// おえかき用コレクション
-eleventyConfig.addCollection("galleryImages", function() {
- const dir = "src/images/portfolio";
- return fs.readdirSync(dir)
-   .filter(f => /\.(jpg|jpeg|png|gif)$/i.test(f))
-   .map(f => ({
-     fileName: f,
-     url: (isProduction ? "/images/portfolio/" : "/images/portfolio/") + f
-   }));
-});
+  // サムネイル生成関数
+  async function generateImages(dir, subPath) {
+    const files = fs.readdirSync(dir).filter(f => /\.(jpg|jpeg|png|gif)$/i.test(f));
 
-// もでりんぐ用コレクション
-eleventyConfig.addCollection("modelingImages", function() {
- const dir = "src/images/3dcg";
- return fs.readdirSync(dir)
-   .filter(f => /\.(jpg|jpeg|png|gif)$/i.test(f))
-   .map(f => ({
-     fileName: f,
-     url: (isProduction ? "/images/3dcg/" : "/images/3dcg/") + f
-   }));
-});
+    let results = [];
+    for (let file of files) {
+      let srcPath = `${dir}/${file}`;
 
-return {
- pathPrefix: isProduction ? "/umanogomingo/" : "/",
- dir: {
-   input: "src",
-   output: "docs",
- }
-};
+      // サムネイル画像を生成（横幅 300px）
+      let metadata = await Image(srcPath, {
+        widths: [250, null], // 300px サムネイル + 元サイズ
+        formats: ["jpeg"],
+        outputDir: "./docs/images/", // 出力先
+        urlPath: "/images/",        // 公開パス
+      });
+
+      results.push({
+        fileName: file,
+        thumbUrl: metadata.jpeg[0].url, // サムネイル
+        fullUrl: metadata.jpeg[1].url   // 元サイズ
+      });
+    }
+    return results;
+  }
+
+  // コレクション: おえかき
+  eleventyConfig.addCollection("galleryImages", async function() {
+    return await generateImages("src/images/portfolio", "portfolio");
+  });
+
+  // コレクション: もでりんぐ
+  eleventyConfig.addCollection("modelingImages", async function() {
+    return await generateImages("src/images/3dcg", "3dcg");
+  });
+
+  return {
+    pathPrefix: isProduction ? "/umanogomingo/" : "/",
+    dir: {
+      input: "src",
+      output: "docs",
+    }
+  };
 };

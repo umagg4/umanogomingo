@@ -12,20 +12,29 @@ title: 動画ギャラリー
     body { font-family: "07にくまるフォント"; text-align: center; background-color: #111; color: #fff; }
     h1 { margin-top: 1em; font-size: 3em; text-shadow: 2px 2px 6px rgba(0,0,0,0.7); }
 
+    /* --- タブ --- */
+    .tabs { display: flex; justify-content: center; gap: 1em; margin: 2em 0; flex-wrap: wrap; }
+    .tabs button {
+      padding: 8px 16px;
+      font-size: 1em;
+      background: #222;
+      color: #ff9900;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tabs button.active { background: #ff9900; color: #111; }
+
+    /* --- グリッド --- */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
       max-width: 1200px;
-      margin: 2em auto;
+      margin: 0 auto 2em auto;
     }
-
-    .video-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
+    .video-item { display: flex; flex-direction: column; align-items: center; }
     .video-item img {
       width: 100%;
       border-radius: 10px;
@@ -33,9 +42,7 @@ title: 動画ギャラリー
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       transition: transform 0.3s ease;
     }
-
     .video-item img:hover { transform: scale(1.05); }
-
     .video-title {
       margin-top: 8px;
       font-size: 1.1em;
@@ -43,18 +50,16 @@ title: 動画ギャラリー
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
 
+    /* --- ライトボックス --- */
     #lightbox {
       display: none;
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       background: rgba(0,0,0,0.8);
       z-index: 1000;
-      justify-content: center;
-      align-items: center;
+      justify-content: center; align-items: center;
       cursor: pointer;
     }
-
     #lightbox iframe {
       width: 80vw;
       height: 45vw;
@@ -70,36 +75,67 @@ title: 動画ギャラリー
   </style>
 </head>
 <body>
-  <h1>どうが</h1>
+  <h1>動画ギャラリー</h1>
 
-  <div class="grid">
+  {# --- ジャンルリストを作る --- #}
+{% set genres = [] %}
+{% for video in videos %}
+  {% if genres.indexOf(video.genre) == -1 %}
+    {% set genres = genres.concat([video.genre]) %}
+  {% endif %}
+{% endfor %}
+
+
+  <!-- タブ -->
+ <div class="tabs">
+  {% for genre in videos.genres %}
+    <button data-genre="{{ genre }}" class="{% if loop.first %}active{% endif %}">{{ genre }}</button>
+  {% endfor %}
+</div>
+
+{% for genre in videos.genres %}
+  <div class="grid" data-genre="{{ genre }}" style="{% if not loop.first %}display:none{% endif %}">
     {% for video in videos %}
-      <div class="video-item">
-        <img src="{{ video.thumbnail }}" alt="{{ video.title }}" data-url="{{ video.url }}">
-        <div class="video-title">{{ video.title }}</div>
-      </div>
-    {% else %}
-      <p>動画がありません</p>
+      {% if video.genre == genre %}
+        <div class="video-item">
+          <img src="{{ video.thumbnail }}" alt="{{ video.title }}" data-url="{{ video.url }}">
+          <div class="video-title">{{ video.title }}</div>
+        </div>
+      {% endif %}
     {% endfor %}
   </div>
+{% endfor %}
 
+
+  <!-- ライトボックス -->
   <div id="lightbox">
     <iframe src="" allowfullscreen></iframe>
   </div>
 
-  <a class="back" href={{ '/' | url }}>← トップへ戻る</a>
+  <a class="back" href="{{ '/' | url }}">← トップへ戻る</a>
 
   <script>
+    // --- タブ切り替え ---
+    const tabs = document.querySelectorAll('.tabs button');
+    const grids = document.querySelectorAll('.grid');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const genre = tab.dataset.genre;
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        grids.forEach(grid => grid.style.display = grid.dataset.genre === genre ? 'grid' : 'none');
+      });
+    });
+
+    // --- ライトボックス ---
     const lightbox = document.getElementById('lightbox');
     const lbIframe = lightbox.querySelector('iframe');
-
     document.querySelectorAll('.video-item img').forEach(img => {
       img.addEventListener('click', () => {
         lbIframe.src = img.dataset.url;
         lightbox.style.display = 'flex';
       });
     });
-
     lightbox.addEventListener('click', () => {
       lightbox.style.display = 'none';
       lbIframe.src = '';
